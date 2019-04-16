@@ -1,11 +1,10 @@
-package com.herojeff02;
 
-class Friend {
+public class Friend {
     private String name; //이름
     private int group; //친구 그룹
     private String email; //이메일
-    private String profilePic; //사진
-    private String phoneNumber; //전화번호
+    private String profilePic;
+    private String phoneNumber;
 
     public String getName() {
         return name;
