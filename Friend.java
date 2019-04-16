@@ -1,6 +1,7 @@
+
 public class Friend {
    private String name;
-   private int group;
+   private String group;
    private String num;
    private String email;
    private String img;
@@ -11,10 +12,10 @@ public class Friend {
    public void setName(String name) {
       this.name = name;
    }
-   public int getGroup() {
+   public String getGroup() {
       return group;
    }
-   public void setGroup(int group) {
+   public void setGroup(String group) {
       this.group = group;
    }
    public String getNum() {
@@ -35,8 +36,8 @@ public class Friend {
    public void setImg(String img) {
       this.img = img;
    }
-   
-   public Friend(String name, int group, String num, String email, String img) {
+
+   public Friend(String name, String group, String num, String email, String img) {
       this.name = name;
       this.group = group;
       this.num = num;
@@ -45,6 +46,10 @@ public class Friend {
    }
    
    public void print() {
-      System.out.println("Name : " + name + "Group : " + group +  "Phone Number : " + num + "Email : " + email +"Image : " + img);
+      System.out.println("Name : " + name);
+      System.out.println("Group : " + group);
+      System.out.println("Phone Number : " + num);
+      System.out.println("Email : " + email);
+      System.out.println("Image : " + img);
    }
 }
