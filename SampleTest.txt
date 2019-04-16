@@ -2,3 +2,4 @@ Park : 1 : 010-7475-9336 : shb03323@naver.com : Park.jpg
 Jang : 2 : 010-1234-1234 : minhyuk@naver.com : Jang.jpg
 Kim : 1 : 010-4321-4321: kim@naver.com : Kim.jpg
 Lee : 3 : 010-1232-3232  : jklee@naver.com : Lee.jpg
+Jung : 12 : 1234-32 :  Jung.jpg
