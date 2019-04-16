@@ -1,24 +1,21 @@
-
 public class FriendList {
-   private Friend[] list;
-   public FriendList() {
-        this.list = new Friend[100];
-    }
+   public Friend[] list;
+   int num = 0;
    
-   public int numFriends() {
-        return list.length;
-    }
+   public FriendList() {
+        list = new Friend[100];
+   }  
+   
+   public int numFriends() { 
+       return num;
+   }
+   
+   public void saveFriendList(Friend input) {
+	   this.list[num++] = input;
+   }
 
    public Friend getFriend(int i) {
-      try {
-         return list[i];
-      }
-      catch(Exception e) {
-         return null;
-      }
+      return list[i];
    }
    
-   public Friend[] getList() {
-      return list;
-   }
 }
