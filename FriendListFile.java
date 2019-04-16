@@ -2,23 +2,28 @@ import java.io.File;
 import java.util.Scanner;
 
 public class FriendListFile {
-   
-	public FriendList FriendList();
-	public Friend Friend();
+	public void friendList() {
+		try {
+			FriendList friendList = new FriendList();
+		}
+		catch(Exception e) {
+			System.out.println("ERROR!");
+		}
+	}
 	
     try {
     	File file = new File(fileName);
-    	Scanner scan = new Scanner(file);
+    	Scanner input = new Scanner(file);
     	
-    	while (scan.hasNext()) { 
-    		String line = scan.nextLine();
+    	while (input.hasNext()) { 
+    		String line = input.nextLine();
     	}
     } 
     catch(Exception e) { 
     	System.out.println("ERROR!");
     }
 
-    private Friend fix(String line) {
+    private Friend change(String line) {
     	if (line.startsWith("//")) {
     		return null;
     	}
