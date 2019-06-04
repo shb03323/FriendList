@@ -1,4 +1,3 @@
-package project5;
 
 import java.io.File;
 import java.util.Scanner;
@@ -19,7 +18,7 @@ public class FriendListFile {
 			while (input.hasNext()) {
 				Friend fri = splitLine(input.nextLine());
 				if (fri != null) {
-					friendList.saveFriendList(fri);
+					friendList.addFriend(fri);
 				}
 			}
 		} catch (Exception e) {
@@ -40,7 +39,7 @@ public class FriendListFile {
 			return null;
 		}
 		
-		for (int i=0; i<friendList.num; i++) {
+		for (int i=0; i<friendList.numFriends(); i++) {
 			if(friendList.getFriend(i).getName().equals(split[0].trim())) {
 				System.out.println("Name Conflict");
 			}
@@ -73,7 +72,7 @@ public class FriendListFile {
 	public void readListToFile() throws IOException {
 		FileWriter fw = new FileWriter("out.txt");
 		for(int i=0; i<friendList.numFriends(); i++) {
-			fw.write(friendList.list[i].getName() + " : " + friendList.list[i].getGroup() + " : " + friendList.list[i].getNum() + " : " + friendList.list[i].getEmail() + " : " + friendList.list[i].getImg());
+			fw.write(friendList.getFriend(i).getName() + " : " + friendList.getFriend(i).getGroup() + " : " + friendList.getFriend(i).getTel() + " : " + friendList.getFriend(i).getEmail() + " : " + friendList.getFriend(i).getImg());
 			fw.write("\r\n");
 		}
 		fw.close();

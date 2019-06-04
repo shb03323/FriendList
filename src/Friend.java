@@ -1,9 +1,8 @@
-package project5;
 
 public class Friend {
 	   private String name;
 	   private String group;
-	   private String num;
+	   private String tel;
 	   private String email;
 	   private String img;
 	   
@@ -19,11 +18,11 @@ public class Friend {
 	   public void setGroup(String group) {
 	      this.group = group;
 	   }
-	   public String getNum() {
-	      return num;
+	   public String getTel() {
+	      return tel;
 	   }
-	   public void setNum(String num) {
-	      this.num = num;
+	   public void setNum(String tel) {
+	      this.tel = tel;
 	   }
 	   public String getEmail() {
 	      return email;
@@ -38,10 +37,10 @@ public class Friend {
 	      this.img = img;
 	   }
 
-	   public Friend(String name, String group, String num, String email, String img) {
+	   public Friend(String name, String group, String tel, String email, String img) {
 	      this.name = name;
 	      this.group = group;
-	      this.num = num;
+	      this.tel = tel;
 	      this.email = email;
 	      this.img =img;
 	   }
@@ -49,7 +48,7 @@ public class Friend {
 	   public void print() {
 	      System.out.println("Name : " + name);
 	      System.out.println("Group : " + group);
-	      System.out.println("Phone Number : " + num);
+	      System.out.println("Phone Number : " + tel);
 	      System.out.println("Email : " + email);
 	      System.out.println("Image : " + img);
 	   }

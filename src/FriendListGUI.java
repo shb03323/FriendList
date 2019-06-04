@@ -1,4 +1,3 @@
-package project5;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,59 +5,71 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class FriendListGUI extends JFrame {
 	
 	FriendListFile fileGetter = new FriendListFile();
-	FriendList friendList = new FriendList();
+	
+	//what to do
+	class MenuPanel extends JPanel {
+		public MenuPanel() {
+			setLayout(new GridLayout(4,1));
+			JButton add = new JButton("Add");
+			JButton delete = new JButton("Delete");
+			JButton modify = new JButton("Modify");
+			JButton saveFile = new JButton("Save File");
+			add(add);
+			add(delete);
+			add(modify);
+			add(saveFile);
+			AddButton addButton = new AddButton();
+			add.addActionListener(addButton);
+			DeleteButton deleteButton = new DeleteButton();
+			delete.addActionListener(deleteButton);
+			ModifyButton modifyButton = new ModifyButton();
+			modify.addActionListener(modifyButton);
+			SaveFileButton saveFileButton = new SaveFileButton();
+			saveFile.addActionListener(saveFileButton);
+		}
+	}
+	
+	//friend info list
+	class InfoPanel extends JPanel {
+		public InfoPanel() {
+			setLayout(new GridLayout(fileGetter.friendList.numFriends()+1,6));
+			add(new JLabel());
+			add(new JLabel("이름"));
+			add(new JLabel("그룹"));
+			add(new JLabel("전화번호"));
+			add(new JLabel("Email"));
+			add(new JLabel("사진"));
+			for(int i=0;i<fileGetter.friendList.numFriends();i++) {
+				add(new JCheckBox());
+				add(new JLabel(fileGetter.friendList.getFriend(i).getName()));
+				add(new JTextField(fileGetter.friendList.getFriend(i).getGroup()));
+				add(new JTextField(fileGetter.friendList.getFriend(i).getTel()));
+				add(new JTextField(fileGetter.friendList.getFriend(i).getEmail()));
+				add(new JTextField(fileGetter.friendList.getFriend(i).getImg()));
+			}
+		}
+	}
 	
 	public FriendListGUI() {
 		
+		//UI
 		super("친구 목록");
 		setBounds(100,100,750,300);
 		
-		friendList = fileGetter.readFileToList("C:\\Users\\96jos\\eclipse-workspace\\project5\\friendlist-norm.data");
+		fileGetter.friendList = fileGetter.readFileToList("friendlist-norm.data");
 		
-		JPanel p1 = new JPanel();
-		p1.setLayout(new GridLayout(4,1));
-		JButton add = new JButton("Add");
-		JButton delete = new JButton("Delete");
-		JButton modify = new JButton("Modify");
-		JButton saveFile = new JButton("Save File");
-		p1.add(add);
-		p1.add(delete);
-		p1.add(modify);
-		p1.add(saveFile);;
-		AddButton addButton = new AddButton();
-		add.addActionListener(addButton);
-		DeleteButton deleteButton = new DeleteButton();
-		delete.addActionListener(deleteButton);
-		ModifyButton modifyButton = new ModifyButton();
-		modify.addActionListener(modifyButton);
-		SaveFileButton saveFileButton = new SaveFileButton();
-		saveFile.addActionListener(saveFileButton);
+		MenuPanel menuPanel = new MenuPanel();
+		InfoPanel infoPanel = new InfoPanel();
 		
-		add(p1, BorderLayout.EAST);
+		JPanel p = new JPanel();
 		
-		JPanel p2 = new JPanel();
-		p2.setLayout(new GridLayout(4,6));
-		p2.add(new JLabel(""));
-		p2.add(new JLabel("이름"));
-		p2.add(new JLabel("그룹"));
-		p2.add(new JLabel("전화번호"));
-		p2.add(new JLabel("Email"));
-		p2.add(new JLabel("사진"));
-		for(int i=0;i<3;i++) {
-			p2.add(new JCheckBox());
-			p2.add(new JLabel(friendList.list[i].getName()));
-			p2.add(new JTextField(friendList.list[i].getGroup()));
-			p2.add(new JTextField(friendList.list[i].getNum()));
-			p2.add(new JTextField(friendList.list[i].getEmail()));
-			p2.add(new JLabel());
-		}
-		
-		JPanel p3 = new JPanel();
-		p3.add(p2, BorderLayout.NORTH);
-		add(p3, BorderLayout.CENTER);
+		add(menuPanel, BorderLayout.EAST);
+		add(p, BorderLayout.CENTER);
+		p.add(infoPanel, BorderLayout.NORTH);
 		
 		setVisible(true);
 	}
@@ -66,8 +77,9 @@ public class FriendListGUI extends JFrame {
 
 class AddButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Add button Clicked.");
+		new AddFriend();
 	}
+	
 }
 
 class DeleteButton implements ActionListener {
