@@ -77,9 +77,10 @@ public class FriendListGUI extends JFrame {
 
 class AddButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
-		new AddFriend();
+		FriendListFile fileGetter = new FriendListFile();
+		
+		AddFriend addFriend = new AddFriend(fileGetter);
 	}
-	
 }
 
 class DeleteButton implements ActionListener {

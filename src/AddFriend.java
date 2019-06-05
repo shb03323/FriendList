@@ -12,8 +12,12 @@ public class AddFriend extends JFrame {
 	public String telText1;
 	public String emailText1;
 	public String imgText1;
-	
-	FriendListGUI friendListGUI = new FriendListGUI();
+	JTextField nameText = new JTextField();
+	JTextField groupText = new JTextField();
+	JTextField telText = new JTextField();
+	JTextField emailText = new JTextField();
+	JTextField imgText = new JTextField();
+//	FriendListGUI friendListGUI = new FriendListGUI();
 	
 	class MenuPanel extends JPanel {
 		public MenuPanel() {
@@ -24,15 +28,15 @@ public class AddFriend extends JFrame {
 			add(new JLabel("Email"));
 			add(new JLabel("사진"));
 			
-			JTextField nameText = new JTextField();
+			//JTextField nameText = new JTextField();
 			add(nameText);
-			JTextField groupText = new JTextField();
+			//JTextField groupText = new JTextField();
 			add(groupText);
-			JTextField telText = new JTextField();
+			//JTextField telText = new JTextField();
 			add(telText);
-			JTextField emailText = new JTextField();
+			//JTextField emailText = new JTextField();
 			add(emailText);
-			JTextField imgText = new JTextField();
+			//JTextField imgText = new JTextField();
 			add(imgText);
 			
 			nameText1 = nameText.getText();
@@ -40,10 +44,11 @@ public class AddFriend extends JFrame {
 			telText1 = telText.getText();
 			emailText1 = emailText.getText();
 			imgText1 = imgText.getText();
+			
 		}
 	}
 	
-	public AddFriend() {
+	public AddFriend(FriendListFile fileGetter) {
 		super("추가될 친구 정보");
 		setBounds(100,400,700,150);
 		
@@ -55,7 +60,13 @@ public class AddFriend extends JFrame {
 //		DoneButton doneButton = new DoneButton();
 		done.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				friendListGUI.fileGetter.friendList.addFriend(new Friend(nameText1, groupText1, telText1, emailText1, imgText1));
+				nameText1 = nameText.getText();
+				groupText1 = groupText.getText();
+				telText1 = telText.getText();
+				emailText1 = emailText.getText();
+				imgText1 = imgText.getText();
+				
+				fileGetter.friendList.addFriend(new Friend(nameText1, groupText1, telText1, emailText1, imgText1));
 				System.out.println(nameText1);
 				dispose();
 			}
