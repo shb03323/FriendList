@@ -17,10 +17,5 @@ public class FriendList {
 	   
 	   public void deleteFriend(int i) {
 		   list.remove(i);
-	   }
-	   
-	   public void setFriend(int i, Friend input) {
-		   list.set(i, input);
-	   }
-	   
+	   }   
 	}

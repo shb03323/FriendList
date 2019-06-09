@@ -70,8 +70,6 @@ public class FriendListGUI extends JFrame {
 				telField.add(telText);
 				emailField.add(emailText);
 				imgField.add(imgText);
-				
-				add(new SingleFriend(name, group, tel, email, img));
 			}
 		}
 	}
@@ -154,13 +152,9 @@ public class FriendListGUI extends JFrame {
 		
 		fileGetter.friendList = fileGetter.readFileToList("friendlist-norm.data");
 		
-		MenuPanel menuPanel = new MenuPanel();
-		
 		update();
 		frameUpdate();
 		
-		add(menuPanel, BorderLayout.EAST);
-		add(p, BorderLayout.CENTER);
 		setVisible(true);
 	}
 	

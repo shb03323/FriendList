@@ -35,12 +35,6 @@ public class AddFriend extends JFrame {
 			add(emailText);
 			add(imgText);
 			
-			nameText1 = nameText.getText();
-			groupText1 = groupText.getText();
-			telText1 = telText.getText();
-			emailText1 = emailText.getText();
-			imgText1 = imgText.getText();
-			
 		}
 	}
 
@@ -52,6 +46,7 @@ public class AddFriend extends JFrame {
 		MenuPanel menuPanel = new MenuPanel();
 		
 		add(menuPanel, BorderLayout.CENTER);
+		add(done, BorderLayout.EAST);
 		
 		done.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -68,7 +63,6 @@ public class AddFriend extends JFrame {
 			}
 		});
 		
-		add(done, BorderLayout.EAST);
 		setVisible(true);
 	}
 }
