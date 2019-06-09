@@ -22,7 +22,7 @@ public class Friend {
 	public String getTel() {
 	   return tel;
 	}
-	public void setNum(String tel) {
+	public void setTel(String tel) {
 	   this.tel = tel;
 	}
 	public String getEmail() {

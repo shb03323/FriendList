@@ -18,6 +18,7 @@ public class AddFriend extends JFrame {
 	JTextField emailText = new JTextField();
 	JTextField imgText = new JTextField();
 	JButton done = new JButton("Done");
+	FriendListGUI input = null;
 	
 	class MenuPanel extends JPanel {
 		public MenuPanel() {
@@ -43,8 +44,9 @@ public class AddFriend extends JFrame {
 		}
 	}
 
-	public AddFriend(FriendListFile fileGetter) {
+	public AddFriend(FriendListFile fileGetter,FriendListGUI input) {
 		super("추가될 친구 정보");
+		this.input = input;
 		setBounds(100,400,700,150);
 		
 		MenuPanel menuPanel = new MenuPanel();
@@ -61,6 +63,9 @@ public class AddFriend extends JFrame {
 				
 				fileGetter.friendList.addFriend(new Friend(nameText1, groupText1, telText1, emailText1, imgText1));
 				fileGetter.friendList.list.get(3).print();
+				
+				//FriendListGUI friendGUI = new FriendListGUI();
+				input.update();
 				dispose();
 			}
 		});
