@@ -17,7 +17,7 @@ public class AddFriend extends JFrame {
 	JTextField telText = new JTextField();
 	JTextField emailText = new JTextField();
 	JTextField imgText = new JTextField();
-//	FriendListGUI friendListGUI = new FriendListGUI();
+	JButton done = new JButton("Done");
 	
 	class MenuPanel extends JPanel {
 		public MenuPanel() {
@@ -28,15 +28,10 @@ public class AddFriend extends JFrame {
 			add(new JLabel("Email"));
 			add(new JLabel("사진"));
 			
-			//JTextField nameText = new JTextField();
 			add(nameText);
-			//JTextField groupText = new JTextField();
 			add(groupText);
-			//JTextField telText = new JTextField();
 			add(telText);
-			//JTextField emailText = new JTextField();
 			add(emailText);
-			//JTextField imgText = new JTextField();
 			add(imgText);
 			
 			nameText1 = nameText.getText();
@@ -47,7 +42,7 @@ public class AddFriend extends JFrame {
 			
 		}
 	}
-	
+
 	public AddFriend(FriendListFile fileGetter) {
 		super("추가될 친구 정보");
 		setBounds(100,400,700,150);
@@ -56,8 +51,6 @@ public class AddFriend extends JFrame {
 		
 		add(menuPanel, BorderLayout.CENTER);
 		
-		JButton done = new JButton("Done");
-//		DoneButton doneButton = new DoneButton();
 		done.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				nameText1 = nameText.getText();
@@ -67,7 +60,7 @@ public class AddFriend extends JFrame {
 				imgText1 = imgText.getText();
 				
 				fileGetter.friendList.addFriend(new Friend(nameText1, groupText1, telText1, emailText1, imgText1));
-				System.out.println(nameText1);
+				fileGetter.friendList.list.get(3).print();
 				dispose();
 			}
 		});
@@ -76,9 +69,3 @@ public class AddFriend extends JFrame {
 		setVisible(true);
 	}
 }
-
-//class DoneButton implements ActionListener {
-//	public void actionPerformed(ActionEvent e) {
-//		System.out.println("Done button Clicked.");
-//	}
-//}

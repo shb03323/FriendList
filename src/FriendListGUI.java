@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 @SuppressWarnings("serial")
 public class FriendListGUI extends JFrame {
@@ -44,12 +46,21 @@ public class FriendListGUI extends JFrame {
 			add(new JLabel("Email"));
 			add(new JLabel("»çÁø"));
 			for(int i=0;i<fileGetter.friendList.numFriends();i++) {
-				add(new JCheckBox());
+				JCheckBox checkBox = new JCheckBox();
+				add(checkBox);
 				add(new JLabel(fileGetter.friendList.getFriend(i).getName()));
 				add(new JTextField(fileGetter.friendList.getFriend(i).getGroup()));
 				add(new JTextField(fileGetter.friendList.getFriend(i).getTel()));
 				add(new JTextField(fileGetter.friendList.getFriend(i).getEmail()));
 				add(new JTextField(fileGetter.friendList.getFriend(i).getImg()));
+				
+				checkBox.addItemListener(new ItemListener() {
+					public void itemStateChanged(ItemEvent e) {
+						if(e.getStateChange()==ItemEvent.SELECTED) {
+							fileGetter.friendList.getFriend(i).check = true;
+						}
+					}
+				}); 
 			}
 		}
 	}
@@ -73,19 +84,21 @@ public class FriendListGUI extends JFrame {
 		
 		setVisible(true);
 	}
-}
-
-class AddButton implements ActionListener {
-	public void actionPerformed(ActionEvent e) {
-		FriendListFile fileGetter = new FriendListFile();
-		
-		AddFriend addFriend = new AddFriend(fileGetter);
+	
+	class AddButton implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			AddFriend addFriend = new AddFriend(fileGetter);
+			revalidate();
+			repaint();
+		}
 	}
-}
-
-class DeleteButton implements ActionListener {
-	public void actionPerformed(ActionEvent e) {
-		System.out.println("Delete button Clicked.");
+	
+	class DeleteButton implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (fileGetter.friendList.getFriend(0).check == true)
+				System.out.println("Delete button Clicked.");
+			System.out.println("Delete button Clicked.");
+		}
 	}
 }
 
