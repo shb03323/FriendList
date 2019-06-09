@@ -2,11 +2,6 @@ import java.util.ArrayList;
 
 public class FriendList {
 	   ArrayList<Friend> list = new ArrayList<Friend>();
-
-	   
-//	   public FriendList() {
-//	        list = new Friend[100];
-//	   }  
 	   
 	   public int numFriends() { 
 	       return list.size();

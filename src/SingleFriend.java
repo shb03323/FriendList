@@ -3,18 +3,16 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class SingleFriend extends JPanel{
 	boolean check;
 	public SingleFriend(String name, String group, String tel, String email, String img) {
-		setPreferredSize(new Dimension(650,30));
+		setPreferredSize(new Dimension(700,30));
 		JCheckBox checkBox = new JCheckBox("", false);
-		JLabel nameField = new JLabel(name);
-		add(nameField);
-		add(new JLabel(name));
+		add(new JTextField(name));
 		add(new JTextField(group));
 		add(new JTextField(tel));
 		add(new JTextField(email));
@@ -24,6 +22,10 @@ public class SingleFriend extends JPanel{
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==ItemEvent.SELECTED) {
 					check = true;
+				}
+				
+				else {
+					check = false;
 				}
 			}
 		}); 

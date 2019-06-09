@@ -62,9 +62,7 @@ public class AddFriend extends JFrame {
 				imgText1 = imgText.getText();
 				
 				fileGetter.friendList.addFriend(new Friend(nameText1, groupText1, telText1, emailText1, imgText1));
-				fileGetter.friendList.list.get(3).print();
-				
-				//FriendListGUI friendGUI = new FriendListGUI();
+
 				input.update();
 				dispose();
 			}

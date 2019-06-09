@@ -11,7 +11,6 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class FriendListGUI extends JFrame {
 
-//	ArrayList<Friend> list = new ArrayList<Friend>();
 	FriendListFile fileGetter = new FriendListFile();
 	JPanel p = new JPanel();
 	ArrayList<JTextField> nameField = new ArrayList<JTextField>();
@@ -20,7 +19,6 @@ public class FriendListGUI extends JFrame {
 	ArrayList<JTextField> emailField = new ArrayList<JTextField>();
 	ArrayList<JTextField> imgField = new ArrayList<JTextField>();
 	
-	//what to do
 	class MenuPanel extends JPanel {
 		public MenuPanel() {
 			setLayout(new GridLayout(4,1));
@@ -44,7 +42,6 @@ public class FriendListGUI extends JFrame {
 		}
 	}
 	
-	//friend info list
 	class InfoPanel extends JPanel {
 		public InfoPanel() {
 			setLayout(new GridLayout(fileGetter.friendList.numFriends()+1,6));
@@ -62,13 +59,25 @@ public class FriendListGUI extends JFrame {
 				String tel = fileGetter.friendList.getFriend(i).getTel();
 				String email = fileGetter.friendList.getFriend(i).getEmail();
 				String img = fileGetter.friendList.getFriend(i).getImg();
+				
+				JTextField nameText = new JTextField(name);
+				JTextField groupText = new JTextField(group);
+				JTextField telText = new JTextField(tel);
+				JTextField emailText = new JTextField(email);
+				JTextField imgText = new JTextField(img);
+				nameField.add(nameText);
+				groupField.add(groupText);
+				telField.add(telText);
+				emailField.add(emailText);
+				imgField.add(imgText);
+				
 				add(new SingleFriend(name, group, tel, email, img));
 			}
 		}
 	}
 	
 	public void update() {
-		System.out.println(fileGetter.friendList.numFriends());
+
 		InfoPanel infoPanel = new InfoPanel();
 		infoPanel.removeAll();
 		
@@ -86,18 +95,17 @@ public class FriendListGUI extends JFrame {
 			String tel = fileGetter.friendList.getFriend(i).getTel();
 			String email = fileGetter.friendList.getFriend(i).getEmail();
 			String img = fileGetter.friendList.getFriend(i).getImg();
-			//add(new SingleFriend(name, group, tel, email, img));
 			
 			JTextField nameText = new JTextField(name);
 			JTextField groupText = new JTextField(group);
 			JTextField telText = new JTextField(tel);
 			JTextField emailText = new JTextField(email);
 			JTextField imgText = new JTextField(img);
-			nameField.add(nameText);
-			groupField.add(groupText);
-			telField.add(telText);
-			emailField.add(emailText);
-			imgField.add(imgText);
+			nameField.set(i, nameText);
+			groupField.set(i, groupText);
+			telField.set(i, telText);
+			emailField.set(i, emailText);
+			imgField.set(i, imgText);
 			
 			infoPanel.add(checkBox);
 			infoPanel.add(nameText);
@@ -118,18 +126,15 @@ public class FriendListGUI extends JFrame {
 					}
 				}
 			}); 
-			
-			
 		}
+		
 		p.removeAll();
 		p.add(infoPanel,BorderLayout.NORTH);
+		
 		infoPanel.revalidate();
 		infoPanel.repaint();
 		
 		infoPanel.setVisible(true);
-//		return infoPanel;
-		
-		
 	}
 	
 	public void frameUpdate() {
@@ -145,20 +150,17 @@ public class FriendListGUI extends JFrame {
 	
 	public FriendListGUI() {
 		super("친구 목록");
-		setBounds(100,100,750,300);
+		setBounds(100,100,900,300);
 		
 		fileGetter.friendList = fileGetter.readFileToList("friendlist-norm.data");
 		
-		//UI
-		
 		MenuPanel menuPanel = new MenuPanel();
-		//InfoPanel infoPanel = new InfoPanel();
-		update();
 		
-//		frameUpdate();
+		update();
+		frameUpdate();
+		
 		add(menuPanel, BorderLayout.EAST);
 		add(p, BorderLayout.CENTER);
-		//p.add(infoPanel, BorderLayout.NORTH);
 		setVisible(true);
 	}
 	
@@ -176,13 +178,7 @@ public class FriendListGUI extends JFrame {
 	
 	class ModifyButton implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			for(int i=0;i<fileGetter.friendList.numFriends();i++) {
-				fileGetter.friendList.getFriend(i).setName(nameField.get(i).getText());
-				fileGetter.friendList.getFriend(i).setGroup(groupField.get(i).getText());
-				fileGetter.friendList.getFriend(i).setTel(telField.get(i).getText());
-				fileGetter.friendList.getFriend(i).setEmail(emailField.get(i).getText());
-				fileGetter.friendList.getFriend(i).setImg(imgField.get(i).getText());
-			}
+			ModifyFriend modifyFriend = new ModifyFriend(fileGetter, FriendListGUI.this);
 		}
 	}
 	
